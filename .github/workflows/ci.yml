@@ -5,8 +5,36 @@ on:
   pull_request:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Always fail
-        run: exit 1
+      - uses: actions/checkout@v4
+      - name: Check formatting
+        run: echo "Checking formatting..."
+      - name: Run linter
+        run: echo "Linting passed"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    strategy:
+      matrix:
+        suite: [unit, integration]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup
+        run: echo "Setting up ${{ matrix.suite }} tests..."
+      - name: Run ${{ matrix.suite }} tests
+        run: |
+          echo "Running ${{ matrix.suite }} tests..."
+          exit 1
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: echo "Building..."
+      - name: Package
+        run: echo "Packaging..."
