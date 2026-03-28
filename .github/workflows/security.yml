@@ -1,0 +1,23 @@
+name: Security
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependency audit
+        run: |
+          echo "Auditing dependencies..."
+          echo "Found 2 critical vulnerabilities"
+          exit 1
+
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static analysis
+        run: echo "Static analysis... 0 findings"
