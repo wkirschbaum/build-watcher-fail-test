@@ -8,5 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check
-        run: echo "All good!"
+      - name: Validate changelog
+        run: |
+          echo "Checking changelog format..."
+          exit 1
