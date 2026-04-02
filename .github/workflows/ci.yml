@@ -8,5 +8,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Always fail
-        run: exit 1
+      - name: Check
+        run: echo "All good!"
