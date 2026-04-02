@@ -1,0 +1,3 @@
+# Contributors
+
+- Wilhelm Kirschbaum
